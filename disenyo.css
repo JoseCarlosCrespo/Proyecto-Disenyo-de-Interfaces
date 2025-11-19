@@ -1,0 +1,138 @@
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf7f7;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: #c9f4f6;
+}
+
+.header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.search input {
+    padding: 7px 10px;
+}
+
+/* PROMO BAR */
+.promo {
+    text-align: center;
+    background: #59d8e0;
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+}
+
+/* SECTIONS */
+.section {
+    margin-top: 50px;
+}
+
+/* CAROUSEL */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn {
+    background: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.products {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    position: relative;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.card img {
+    width: 100%;
+}
+
+.tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 3px 8px;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.sale { background: #07bdc0; }
+.new { background: #e0ac02; }
+
+.price {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* FOOTER */
+.footer {
+    background: #2d3748FF;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+.footer input {
+    padding: 5px;
+    width: 150px;
+}
+
+.footer button {
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+.carousel {
+    position: relative;
+    overflow: hidden;   /* 🔥 SIN SCROLL */
+}
+
+.track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.card {
+    min-width: 200px; /* tamaño fijo para cálculo */
+    margin-right: 20px;
+}

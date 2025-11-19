@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DawComponents</title>
+    <link rel="stylesheet" href="disenyo.css" />
+
+    <!-- Overrides mínimos para el carousel y like button -->
+    <style>
+        .carousel { position: relative; margin: 24px 0; }
+        .carousel .products.track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 16px 48px; /* espacio lateral para que los botones no tapen las tarjetas */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Ocultar barra de desplazamiento */
+        .carousel .products.track::-webkit-scrollbar { display: none; }
+        .carousel .products.track { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .carousel .card { flex: 0 0 220px; box-sizing: border-box; }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .nav-btn.prev { left: 12px; }
+        .nav-btn.next { right: 12px; }
+
+        .nav-btn:disabled {
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Imagenes responsivas dentro de las cards */
+        .card img { width: 100%; height: auto; display: block; }
+
+        /* Posición relativa para cada card para poder colocar el corazón */
+        .card { position: relative; overflow: visible; }
+
+        /* Corazón (like) arriba a la derecha de cada card */
+        .card .like {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform .12s ease, opacity .12s ease;
+            opacity: 0.95;
+            user-select: none;
+        }
+
+        .card .like:hover { transform: scale(1.08); }
+
+        .card .like.active { transform: scale(1.05); filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+
+        /* Asegurar que el contenedor no muestre overflow vertical */
+        .carousel { overflow: visible; }
+
+        /* Header: iconos junto a la búsqueda */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: space-between;
+        }
+
+        /* Agrupar búsqueda + iconos para poder pegarlos */
+        .search-area {
+            display: flex;
+            align-items: center;
+            gap: 60px; /* pequeño espacio entre input y iconos */
+        }
+
+        .header .search {
+            flex: 1 1 320px;
+            max-width: 560px;
+            display: block;
+            padding-left: 200px;
+        }
+
+        .header .search input {
+            width: 100%;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-left: 0;
+        }
+
+        .header-icons img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            cursor: pointer;
+            display: block;
+        }
+
+        .logo img {
+            height: 50px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo"><img src="img/logo.png" alt="logo"></div>
+
+        <nav>
+            <a href="#">Shop</a>
+            <a href="#">New Products</a>
+            <a href="#">Sales</a>
+        </nav>
+
+        <!-- Agrupado: búsqueda + iconos para que queden pegados -->
+        <div class="search-area">
+            <div class="search">
+                <input type="text" placeholder="Buscar..." />
+            </div>
+
+            <!-- Añadido: iconos a la derecha de la búsqueda -->
+            <div class="header-icons" aria-label="User actions">
+                <img src="img/profile.png" alt="Perfil" title="Perfil">
+                <img src="img/cart.png" alt="Carrito" title="Carrito">
+                <img src="img/settings.png" alt="Ajustes" title="Ajustes">
+            </div>
+        </div>
+    </header>
+
+    <div class="promo">5% DE DESCUENTO en tu primera compra</div>
+
+    <!-- SECTION GAMING LAPTOP -->
+    <section class="section">
+        <h2>GAMING LAPTOP</h2>
+
+        <!-- CARRUSEL 1 -->
+        <div class="carousel" id="carousel1">
+            <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
+
+            <div class="products track">
+                <!-- Añadidas más tarjetas para que el scroll tenga espacio -->
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <!-- Más tarjetas añadidas -->
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag sale">SALE</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+            </div>
+
+            <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- SECTION ASUS LAPTOP -->
+    <section class="section">
+        <h2>ASUS LAPTOP</h2>
+
+        <!-- CARRUSEL 2 -->
+        <div class="carousel" id="carousel2">
+            <button class="nav-btn prev" aria-label="Anterior">&#10094;</button>
+
+            <div class="products track">
+                <!-- Tus cards (ya había muchas) -->
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+
+                <div class="card">
+                    <span class="tag new">NEW</span>
+                    <img src="img/laptop.png" alt="Laptop">
+                    <h3>Laptop ASUS TUF A15</h3>
+                    <p>AMD Ryzen 7 • RTX 2060</p>
+                    <span class="price">1099€</span>
+                </div>
+            </div>
+
+            <button class="nav-btn next" aria-label="Siguiente">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="col">
+            <h4>Contact</h4>
+            <p>C/ Miracambrils Mont-roig 43838</p>
+            <p>+34 635 253 352</p>
+            <p>mail@correo.com</p>
+        </div>
+
+        <div class="col">
+            <h4>Links</h4>
+            <p>About us</p>
+            <p>Privacy Policy</p>
+            <p>Terms and conditions</p>
+        </div>
+
+        <div class="col">
+            <h4>Follow us</h4>
+            <p>Facebook - Twitter - Instagram</p>
+        </div>
+
+        <div class="col">
+            <h4>Newsletter</h4>
+            <input type="email" placeholder="Your email address" />
+            <button>Send</button>
+        </div>
+    </footer>
+
+    <script src="javascript.js"></script>
+
+    <!-- Script para controlar los carousels (desplazamiento y estado de botones)
+         y para añadir el corazón en cada card -->
+    <script>
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const track = carousel.querySelector('.products.track');
+            const prev = carousel.querySelector('.nav-btn.prev');
+            const next = carousel.querySelector('.nav-btn.next');
+
+            if (!track || !prev || !next) return;
+
+            const getScrollAmount = () => Math.max(200, Math.round(carousel.clientWidth - 120));
+
+            prev.addEventListener('click', () => {
+                track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            });
+
+            next.addEventListener('click', () => {
+                track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            });
+
+            function updateButtons() {
+                // tolerancia para evitar fallo por sub-pixel
+                const tolerance = 2;
+                prev.disabled = track.scrollLeft <= tolerance;
+                next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - tolerance;
+            }
+
+            track.addEventListener('scroll', updateButtons);
+            window.addEventListener('resize', updateButtons);
+            // llamado inicial
+            updateButtons();
+        });
+
+        // Añadir icono de corazón a cada card y manejador de toggle
+        (function addLikeIcons() {
+            const INACTIVE = 'img/corazon.png';
+            const ACTIVE = 'img/corazon_rojo.png';
+
+            function toggleLike(ev) {
+                const el = ev.currentTarget || this;
+                const pressed = el.getAttribute('aria-pressed') === 'true';
+                el.src = pressed ? el.dataset.inactive : el.dataset.active;
+                el.setAttribute('aria-pressed', String(!pressed));
+                el.classList.toggle('active', !pressed);
+            }
+
+            document.querySelectorAll('.card').forEach(card => {
+                // evitar duplicados si se ejecuta varias veces
+                if (card.querySelector('.like')) return;
+
+                const like = document.createElement('img');
+                like.src = INACTIVE;
+                like.alt = 'Me gusta';
+                like.className = 'like';
+                like.setAttribute('role', 'button');
+                like.setAttribute('aria-pressed', 'false');
+                like.tabIndex = 0;
+                like.dataset.active = ACTIVE;
+                like.dataset.inactive = INACTIVE;
+
+                like.addEventListener('click', toggleLike);
+                like.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleLike.call(this, e);
+                    }
+                });
+
+                card.appendChild(like);
+            });
+        })();
+    </script>
+
+</body>
+</html>
