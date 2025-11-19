@@ -1,138 +1,392 @@
 /* GENERAL */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eaf7f7;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eaf7f7;
+            min-width: 1600px;
+        }
 
-h2 {
-    margin-left: 20px;
-}
+        h2 {
+            margin-left: 20px;
+        }
 
-/* HEADER */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    background: #c9f4f6;
-}
+        /* HEADER */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: #c9f4f6;
+        }
 
-.header nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-}
+        /* Nav: estilo base y estilo "activo" (más negrita + raya inferior #00b2a9FF) */
+        .header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: 600; /* base */
+            display: inline-block; /* para que el ::after se ajuste */
+            padding-bottom: 8px;
+            transition: font-weight .12s ease, color .12s ease;
+            position: relative;
+        }
+        .header nav a.active {
+            font-weight: 800; /* más negrita cuando está activo */
+            color: #000;
+        }
+        .header nav a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background: #00b2a9FF;
+            border-radius: 3px;
+        }
 
-.search input {
-    padding: 7px 10px;
-}
+        .search input {
+            padding: 7px 10px;
+        }
 
-/* PROMO BAR */
-.promo {
-    text-align: center;
-    background: #59d8e0;
-    padding: 5px;
-    color: white;
-    font-size: 14px;
-}
+        /* PROMO BAR */
+        .promo {
+            text-align: center;
+            background: white;
+            padding: 5px;
+            color: #00b2a9FF;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            font-size: 14px;
+        }
 
-/* SECTIONS */
-.section {
-    margin-top: 50px;
-}
+        /* SECTIONS */
+        .section {
+            margin-top: 50px;
+        }
 
-/* CAROUSEL */
-.carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* CAROUSEL */
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.nav-btn {
-    background: #fff;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 20px;
-}
+        .nav-btn {
+            background: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 20px;
+        }
 
-.products {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 20px;
-}
+        .products {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px;
+        }
 
-/* CARD */
-.card {
-    position: relative;
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0 0 10px #ccc;
-}
+        /* CARD */
+        .card {
+            position: relative;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 0 10px #ccc;
+        }
 
-.card img {
-    width: 100%;
-}
+        .card img {
+            width: 100%;
+        }
 
-.tag {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 3px 8px;
-    color: white;
-    font-size: 12px;
-    border-radius: 4px;
-}
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 3px 8px;
+            color: white;
+            font-size: 12px;
+            border-radius: 4px;
+        }
 
-.sale { background: #07bdc0; }
-.new { background: #e0ac02; }
+        .sale { background: #07bdc0; }
+        .new { background: #e0ac02; }
 
-.price {
-    display: block;
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
+        .price {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-/* FOOTER */
-.footer {
-    background: #2d3748FF;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 40px;
-    margin-top: 50px;
-}
+        /* FOOTER */
+        .footer {
+            background: #2d3748FF;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 40px;
+            margin-top: 50px;
+        }
 
-.footer input {
-    padding: 5px;
-    width: 150px;
-}
+        .footer input {
+            padding: 5px;
+            width: 150px;
+        }
 
-.footer button {
-    padding: 5px 10px;
-    margin-top: 10px;
-    cursor: pointer;
-}
+        .footer button {
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
 
 
-.carousel {
-    position: relative;
-    overflow: hidden;   /* 🔥 SIN SCROLL */
-}
+        .carousel {
+            position: relative;
+            overflow: hidden;   /* 🔥 SIN SCROLL */
+        }
 
-.track {
-    display: flex;
-    transition: transform 0.4s ease;
-}
+        .track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
 
-.card {
-    min-width: 200px; /* tamaño fijo para cálculo */
-    margin-right: 20px;
-}
+        .card {
+            min-width: 200px; /* tamaño fijo para cálculo */
+            margin-right: 20px;
+        }
+
+        /* Overrides mínimos para el carousel y like button */
+        .carousel { position: relative; margin: 24px 0; }
+        .carousel .products.track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 16px 48px; /* espacio lateral para que los botones no tapen las tarjetas */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Ocultar barra de desplazamiento */
+        .carousel .products.track::-webkit-scrollbar { display: none; }
+        .carousel .products.track { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .carousel .card { flex: 0 0 220px; box-sizing: border-box; }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .nav-btn.prev { left: 12px; }
+        .nav-btn.next { right: 12px; }
+
+        .nav-btn:disabled {
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Imagenes responsivas dentro de las cards */
+        .card img { width: 100%; height: auto; display: block; }
+
+        /* Posición relativa para cada card para poder colocar el corazón */
+        .card { position: relative; overflow: visible; }
+
+        /* Corazón (like) arriba a la derecha de cada card */
+        .card .like {
+            position: absolute;
+            top: 8px;
+            right: 6px; /* aún más a la derecha */
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform .12s ease, opacity .12s ease;
+            opacity: 0.95;
+            user-select: none;
+        }
+
+        /* Corona encima de los badges NEW */
+        .crown {
+            display: block;
+            width: 20px;
+            height: auto;
+            margin: 6px 0 4px;
+        }
+
+        /* Pequeña corona encima de las etiquetas NEW */
+        .tag.new { position: relative; }
+        .tag.new::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -18px; /* ajustar si hace falta */
+            width: 20px;
+            height: 20px;
+            background-image: url('img/corona.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        /* Iconos pequeños usados en el footer/contact */
+        .footer .col p img,
+        .footer .col img.footer-social {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+            margin-right: 8px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
+        /* Copyright centrado debajo del footer */
+        .site-copyright {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            padding: 12px 0;
+        }
+
+        #redes{
+            width: 140px;
+            height: auto;
+        }
+
+        .site-copyright{
+            background-color: #2d3748FF;
+        }
+
+        .card .like:hover { transform: scale(1.08); }
+
+        .card .like.active { transform: scale(1.05); filter: drop-shadow(0 1px 2px rgba(0,0,0,.25)); }
+
+        /* Asegurar que el contenedor no muestre overflow vertical */
+        .carousel { overflow: visible; }
+
+        /* Header: iconos junto a la búsqueda */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: space-between;
+        }
+
+        /* Agrupar búsqueda + iconos para poder pegarlos */
+        .search-area {
+            display: flex;
+            align-items: center;
+            gap: 60px; /* pequeño espacio entre input y iconos */
+        }
+
+        .header .search {
+            flex: 1 1 320px;
+            max-width: 560px;
+            display: block;
+            padding-left: 200px;
+        }
+
+        .header .search input {
+            width: 100%;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-left: 0;
+        }
+
+        .header-icons img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            cursor: pointer;
+            display: block;
+        }
+
+        .logo img {
+            height: 50px;
+            display: block;
+        }
+
+        /* ---------- NUEVAS REGLAS: alineado a la izquierda, color precio y botón carrito ---------- */
+
+        /* Alinear todo el texto dentro de las cards a la izquierda */
+        .card {
+            text-align: left;
+            padding: 12px;
+        }
+        .card h3,
+        .card p {
+            margin: 6px 0;
+            text-align: left;
+        }
+
+        /* Estilo del precio: color solicitado */
+        .price {
+            color: #01b2a9;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Contenedor del precio para dejar espacio al botón circular a la derecha */
+        .price-wrap {
+            position: relative;
+            display: block;
+            padding-right: 52px; /* espacio para el círculo */
+            margin-top: 8px;
+        }
+
+        /* Botón circular pegado al borde derecho del card con icono del carrito */
+        .add-cart {
+            position: absolute;
+            top: 50%;
+            right: 8px; /* pegado al borde derecho de la card */
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #01b2a9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,.15);
+            color: #fff; /* para que el SVG use currentColor y salga blanco */
+        }
+
+        .add-cart img,
+        .add-cart svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+            pointer-events: none;
+        }
+
+        .add-cart:focus {
+            outline: 2px solid rgba(1,178,169,.25);
+            outline-offset: 2px;
+        }
